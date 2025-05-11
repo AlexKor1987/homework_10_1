@@ -4,8 +4,8 @@ from typing import Dict, List
 def filter_by_state(list_of_id: list[Dict],
                     state: str = "EXECUTED") -> list[Dict]:
     '''Функция, которая принимает список словарей и опционально значение для ключа
-state (по умолчанию 'EXECUTED'). Функция возвращает новый список словарей, содержащий
-только те словари, у которых ключ state соответствует указанному значению.'''
+    state (по умолчанию 'EXECUTED'). Функция возвращает новый список словарей, содержащий
+    только те словари, у которых ключ state соответствует указанному значению.'''
     new_list_of_id = []
     for number in range(len(list_of_id)):
         if list_of_id[number]["state"] == state:
@@ -19,7 +19,7 @@ def sort_by_date(list_of_id: list[Dict],
     порядок сортировки(по умолчанию — убывание).Функция должна возвращать новый список,
     отсортированный по дате(date).'''
     sorted_by_date = []
-    sorted_by_date = sorted(list_of_id, key=lambda list_of_id: list_of_id["date"], reverse = reverse_date)
+    sorted_by_date = sorted(list_of_id, key = lambda list_of_id: list_of_id["date"], reverse = reverse_date)
     return sorted_by_date
 
 
