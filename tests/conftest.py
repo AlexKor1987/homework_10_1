@@ -29,13 +29,46 @@ def by_date():
     ]
 
 
-#@pytest.fixture
-#def account_cards():
-#    return 'Maestro 1596 83** **** 5199'
+@pytest.fixture
+def account_cards():
+    return 'Maestro 1596 83** **** 5199'
+
+@pytest.fixture
+def account_cards():
+    return 'Счет **9589'
+
+@pytest.fixture
+def account_cards():
+    return 'MasterCard 7158 30** **** 6758'
 
 
-#@pytest.fixture
-#def getting_date():
-#    return '11.03.2024'
+@pytest.fixture
+def account_cards():
+    return 'Счет *9556'
+
+
+@pytest.fixture
+def account_cards():
+    return 'isa Classic 6831 98** **** 7658'
+
+
+@pytest.fixture
+def account_cards():
+    return 'Visa Platinum 8990 92** **** 5229'
+
+
+@pytest.fixture
+def account_cards():
+    return 'Visa Gold 5999 41** **** 6353'
+
+
+@pytest.fixture
+def account_cards():
+    return 'Счет **4305'
+
+
+@pytest.fixture
+def getting_date():
+    return '11.03.2024'
 
 
