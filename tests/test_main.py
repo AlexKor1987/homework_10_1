@@ -116,8 +116,8 @@ def test_mask_account_card(value, expected):
 
 @pytest.mark.parametrize("value, expected", [
     ('2024-03-11T02:26:18.671407', '11.03.2024'),
-#    ('73654108430135874303', '**4303'),
-#    ('73654108430135874300', '**4300'),
+    ('2025-04-11T02:26:18.671407', '11.04.2025'),
+    ('2025-05-15T02:26:18.671407', '15.05.2025'),
 ])
 def test_get_date(value, expected):
     assert get_date(value) == expected
