@@ -33,9 +33,11 @@ def by_date():
 def account_cards():
     return 'Maestro 1596 83** **** 5199'
 
+
 @pytest.fixture
 def account_cards():
     return 'Счет **9589'
+
 
 @pytest.fixture
 def account_cards():
@@ -70,5 +72,3 @@ def account_cards():
 @pytest.fixture
 def getting_date():
     return '11.03.2024'
-
-

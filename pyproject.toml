@@ -19,6 +19,13 @@ build-backend = "poetry.core.masonry.api"
 pytest = "^8.3.5"
 pytest-cov = "^6.1.1"
 
+
+[tool.poetry.group.lint.dependencies]
+flake8 = "^7.2.0"
+isort = "^6.0.1"
+black = "^25.1.0"
+mypy = "^1.15.0"
+
 [tool.pytest.ini_options]
 pythonpath = [
     "."

@@ -1,5 +1,6 @@
 from datetime import datetime
 
+
 def filter_by_state(list_of_id: list, state: str = "EXECUTED") -> list:
     """Функция, которая принимает список словарей и опционально
     значение для ключа state (по умолчанию 'EXECUTED'). Функция
@@ -43,5 +44,6 @@ if __name__ == "__main__":
         {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
         {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
     ]
+
     print(filter_by_state((dict_data), state="CANCELED"))
     print(sort_by_date((dict_data), reverse_date=False))
