@@ -6,6 +6,13 @@ def get_mask_card_number(card_number: str) -> str:
     counter = 0
     result_card_number = ""
     temp_card_number = []
+
+    if len(str(card_number)) != 16:
+        raise ValueError ('Неверный номер банковской карты')
+    if int(card_number) == 0:
+        raise ValueError ('Неверный номер банковской карты')
+    if not str(card_number).isdigit():
+        raise ValueError ('Неверный номер банковской карты')
     for number in str(card_number):
         counter += 1
         if 6 < counter <= len(str(card_number)) - 4:
@@ -24,6 +31,13 @@ def get_mask_account(account_number: str) -> str:
     """Функция маскировки номера банковского счета"""
     counter = 0
     temp_account_number = []
+
+    if len(str(account_number)) < 19:
+        raise ValueError ('Неверный номер банковского счета')
+    if int(account_number) == 0:
+        raise ValueError ('Неверный номер банковского счета')
+    if not str(account_number).isdigit():
+        raise ValueError ('Неверный номер банковского счета')
     for number in str(account_number):
         counter += 1
         if counter <= len(str(account_number)) - 4:

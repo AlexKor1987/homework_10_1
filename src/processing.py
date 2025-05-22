@@ -1,4 +1,4 @@
-
+from datetime import datetime
 
 def filter_by_state(list_of_id: list, state: str = "EXECUTED") -> list:
     """Функция, которая принимает список словарей и опционально
@@ -6,6 +6,9 @@ def filter_by_state(list_of_id: list, state: str = "EXECUTED") -> list:
     возвращает новый список словарей, содержащий только те словари,
     у которых ключ state соответствует указанному значению."""
     new_list_of_id = []
+    if not (state == "EXECUTED" or state == "CANCELED"):
+        raise ValueError('Неверный статус')
+
     for number in range(len(list_of_id)):
         if list_of_id[number]["state"] == state:
             new_list_of_id.append(list_of_id[number])
@@ -20,6 +23,16 @@ def sort_by_date(list_of_id: list, reverse_date: bool = True) -> list:
     sorted_by_date = sorted(
         list_of_id, key=lambda list_of_id: list_of_id["date"], reverse=reverse_date
     )
+    if list_of_id == []:
+        raise ValueError('Нет данных')
+
+    for number in range(len(list_of_id)):
+        if list_of_id[number]["date"] == 0:
+            raise ValueError('Неверная дата')
+        if int(datetime.fromisoformat(list_of_id[number]["date"]).strftime("%d")) > 31:
+            raise ValueError('Неверное число месяца')
+        if int(datetime.fromisoformat(list_of_id[number]["date"]).strftime("%m")) > 12:
+             raise ValueError('Неверный месяц года')
     return sorted_by_date
 
 
