@@ -1,4 +1,4 @@
-from typing import List, Dict, Any, Iterator
+from typing import List, Dict, Any, Iterator, Generator
 
 transactions =     [
         {
@@ -98,11 +98,11 @@ def transaction_descriptions(transactions_list: List[Dict[str, Any]]) -> Iterato
         yield i["description"]
 
 
-def card_number_generator(start, stop)
-    pass
-
-
-
+def card_number_generator(start: int, stop: int) -> Generator[str, None, None]:
+    """Генерирует номера карт в заданном диапазоне"""
+    for number in range(start, stop):
+        card_number = str(number).zfill(16)
+        yield f"{card_number[:4]} {card_number[4:8]} {card_number[8:12]} {card_number[12:]}"
 
 
 if __name__ == "__main__":
@@ -126,3 +126,8 @@ if __name__ == "__main__":
         print(next(gen))
     except StopIteration:
         print('Больше нет транзакций в этой валюте')
+
+
+
+    for card_number in card_number_generator(1, 5):
+        print(card_number)
