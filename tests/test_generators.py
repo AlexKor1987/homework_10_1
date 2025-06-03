@@ -1,26 +1,8 @@
-from typing import List, Dict, Any, Iterator, Generator
-
-def filter_by_currency(transactions_list: List[Dict[str, Any]], currency: str) -> Iterator[Dict[str, Any]]:
-    """Функция фильтрации транзакции по заданной валюте, возвращает итератор."""
-    for i in transactions_list:
-        if i["operationAmount"]["currency"]["code"] == currency:
-            yield i
+import pytest
+from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
 
 
-def transaction_descriptions(transactions_list: List[Dict[str, Any]]) -> Iterator[Dict[str, Any]]:
-    for i in transactions_list:
-        yield i["description"]
-
-
-def card_number_generator(start: int, stop: int) -> Generator[str, None, None]:
-    """Генерирует номера карт в заданном диапазоне"""
-    for number in range(start, stop):
-        card_number = str(number).zfill(16)
-        yield f"{card_number[:4]} {card_number[4:8]} {card_number[8:12]} {card_number[12:]}"
-
-
-if __name__ == "__main__":
-    transactions = [
+transactions = [
         {
             "id": 939719570,
             "state": "EXECUTED",
@@ -98,42 +80,26 @@ if __name__ == "__main__":
         }
     ]
 
-    #gen = filter_by_currency(transactions, 'RUB')
-    #try:
-    #    print(next(gen))
-    #    print(next(gen))
-    #    print(next(gen))
-    #except StopIteration:
-    #    print('Больше нет транзакций в этой валюте')
-
-#    usd_transactions = list(filter_by_currency(transactions, "USD"))
-#    print(usd_transactions[:4])
-
-    usd_transactions = filter_by_currency(transactions, "USD")
-    for i in range(3):
-        print(next(usd_transactions))
+# filter_by_currency
+#def test_filter_by_currency(currency_filter):
+#    assert filter_by_currency(transactions, "USD") == currency_filter
 
 
+def test_filter_by_currency(currency_filter):
+    usd_transactions = list(filter_by_currency(transactions, "USD"))
+    assert usd_transactions == currency_filter
 
 
-
-#    trans = transaction_descriptions(transactions)
-    descriptions = transaction_descriptions(transactions)
-    for i in range(5):
-        print(next(descriptions))
-
-#    try:
-#        print(next(trans))
-#        print(next(trans))
- #       print(next(trans))
-#        print(next(trans))
-#        print(next(trans))
- #   except StopIteration:
-#        print('Больше нет транзакций')
+# transaction_descriptions
+def test_transaction_descriptions(descriptions):
+    tran = list(transaction_descriptions(transactions))
+    assert tran == descriptions
 
 
+# card_number_generator
+def test_card_number_generator(start_stop):
+    number_generator = list(card_number_generator(1, 5))
+    assert number_generator == start_stop
 
 
-
-    for card_number in card_number_generator(1, 5):
-        print(card_number)
+   # assert card_number_generator(1, 5) == start_stop
