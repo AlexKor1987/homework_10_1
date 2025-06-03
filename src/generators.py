@@ -2,18 +2,36 @@ from typing import List, Dict, Any, Iterator, Generator
 
 def filter_by_currency(transactions_list: List[Dict[str, Any]], currency: str) -> Iterator[Dict[str, Any]]:
     """Функция фильтрации транзакции по заданной валюте, возвращает итератор."""
+    if len(transactions_list) == 0:
+        raise ValueError('Пустой список')
+    for i in transactions_list:
+        if i["operationAmount"]["currency"]["code"] != "USD" and i["operationAmount"]["currency"]["code"] != "RUB":
+            raise ValueError('Неверная валюта')
     for i in transactions_list:
         if i["operationAmount"]["currency"]["code"] == currency:
             yield i
 
 
 def transaction_descriptions(transactions_list: List[Dict[str, Any]]) -> Iterator[Dict[str, Any]]:
+    if len(transactions_list) == 0:
+        raise ValueError('Пустой список')
+    for i in transactions_list:
+         if i["description"] != "Перевод организации" and i["description"] != "Перевод со счета на счет" and i["description"] != "Перевод с карты на карту":
+            raise ValueError('Неверное описание операции')
     for i in transactions_list:
         yield i["description"]
 
 
 def card_number_generator(start: int, stop: int) -> Generator[str, None, None]:
     """Генерирует номера карт в заданном диапазоне"""
+    if stop < start:
+        raise ValueError('Неверный диапазон номеров карт')
+    if start < 0:
+        raise ValueError('Неверный начальный диапазон номеров карт')
+    if stop <= 0:
+        raise ValueError('Неверный конечный диапазон номеров карт')
+    if start == 0 and stop == 0:
+        raise ValueError('Нулевой диапазон номеров карт')
     for number in range(start, stop):
         card_number = str(number).zfill(16)
         yield f"{card_number[:4]} {card_number[4:8]} {card_number[8:12]} {card_number[12:]}"
