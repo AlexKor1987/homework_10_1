@@ -133,6 +133,10 @@ if __name__ == "__main__":
 
 
 
+    usd_transactions = filter_by_currency(transactions, "RUB")
+    for i in range(2):
+        print(next(usd_transactions))
+
 
 
 #    trans = transaction_descriptions(transactions)
