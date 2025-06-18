@@ -1,8 +1,8 @@
 import pytest
-
 from src.masks import get_mask_card_number, get_mask_account
 from src.processing import filter_by_state, sort_by_date
 from src.widget import mask_account_card, get_date
+
 
 dict_data = [
         {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
@@ -10,6 +10,8 @@ dict_data = [
         {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
         {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
     ]
+
+
 
 # get_mask_card_number
 def test_get_mask_card_number(card_numbers):
@@ -228,3 +230,4 @@ def test_get_date(getting_date):
 ])
 def test_get_date(value, expected):
     assert get_date(value) == expected
+
