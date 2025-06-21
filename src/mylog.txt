@@ -1,0 +1,11 @@
+Function inner started in Sun Jun 22 01:25:39 2025
+Function my_function is ok. Result: 3
+Function inner finished in Sun Jun 22 01:25:39 2025
+
+Function inner started in Sun Jun 22 01:26:16 2025
+Error in my_function: TypeError, args: (1, 7, 2), kwargs: {}
+Function inner finished in Sun Jun 22 01:26:16 2025
+
+Function inner started in Sun Jun 22 01:26:51 2025
+Function my_function is ok. Result: 3
+Function inner finished in Sun Jun 22 01:26:51 2025
