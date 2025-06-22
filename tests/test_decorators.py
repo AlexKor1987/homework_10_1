@@ -13,11 +13,11 @@ def add(a, b):
 def test_success_logging_to_console():
     f = StringIO()
     with redirect_stdout(f):
-        result = add(2, 3)
+        result = add(4, 5)
     output = f.getvalue().strip()
 
-    assert result == 5
-    assert "Функция add успешно завершена. Результат: 5" in output
+    assert result == 9
+    assert "Function add is ok. Arguments: (4, 5) Result: 9" in output
 
 
 @log()
@@ -30,8 +30,8 @@ def test_error_logging_to_console():
     f = StringIO()
     with redirect_stdout(f):
         with pytest.raises(ZeroDivisionError):
-            divide(1, 0)
+            divide(4, 0)
     output = f.getvalue().strip()
 
-    assert "Ошибка в divide:" in output
+    assert "Error in divide:" in output
     assert "ZeroDivisionError" in output
