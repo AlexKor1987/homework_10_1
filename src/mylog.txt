@@ -25,3 +25,7 @@ Function inner finished in Sun Jun 22 21:46:09 2025, working time is 0.036
 Function inner started in Sun Jun 22 22:14:26 2025
 Function my_function is ok. Arguments: (1, 2) Result: 3
 Function inner finished in Sun Jun 22 22:14:26 2025, working time is 0.029
+
+Function inner started in Mon Jul  7 13:02:57 2025
+Function my_function is ok. Arguments: (1, 2) Result: 3
+Function inner finished in Mon Jul  7 13:02:57 2025, working time is 0.055
