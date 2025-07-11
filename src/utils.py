@@ -1,19 +1,14 @@
-
 import json
 
-from src.utils import load_transactions
 
-# Путь к файлу operations.json
-file_path = 'data/operations.json'
+def open_file(path: str) -> list:
+    """Функция открытия файла - путь файла передается в эту функцию"""
+    with open(path, encoding='utf-8') as json_file:
+        book_info = json.load(json_file)
+        #print(book_info) # data - словарь, тип dict
+        # #print(type(book_info))
+    return book_info
 
-with open(file_path) as f:
-    operations = json.load(f)
 
-transactions = load_transactions(file_path)
-
-if transactions:
-    print("Загруженные транзакции:")
-    for transaction in transactions:
-        print(transaction)
-else:
-    print("Нет доступных транзакций или файл пуст.")
+if __name__ == "__main__":
+    open_file('C:/Users/PB/Desktop/Python/homework_10_1/data/operations.json')
