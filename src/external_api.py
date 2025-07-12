@@ -1,10 +1,11 @@
-
 import os
 from dotenv import load_dotenv
 import requests
 import json
 from typing import Any, Dict, Generator, Iterator, List
 from src.utils import open_file
+from unittest.mock import Mock
+from unittest.mock import patch
 
 
 def convert_to_rub(currency_not_rub: str, amount_not_rub: float) -> float:
@@ -22,9 +23,9 @@ def convert_to_rub(currency_not_rub: str, amount_not_rub: float) -> float:
   status_code = response.status_code
   result = response.text
   parsed_result = json.loads(result) #преобразование строки JSON в объект Python
-  print(result)
-  print(parsed_result["result"]) # Получаем значение словаря по ключу
-  return parsed_result["result"]
+  #print(result)
+  #print(parsed_result["result"]) # Получаем значение словаря по ключу
+  return round(parsed_result["result"], 2)
 
 
 def exchange_rates(book_info: list) -> list[list[Any] | Any]:
@@ -50,25 +51,18 @@ def exchange_rates(book_info: list) -> list[list[Any] | Any]:
       new_book_info.append(i)
   with open('C:/Users/PB/Desktop/Python/homework_10_1/data/new_operations.json', 'w', encoding='utf-8') as f:
     json.dump(book_info, f)
-
-  print(new_book_info)
-  return new_book_info
-
+  #print(new_book_info)
+  #return new_book_info
 
 
-
-
-
+@patch('requests.get')
+def test_convert_to_rub(mock_get):
+  """Функция тестирования функции конвертации в рубли с помощью Mock и patch"""
+  mock_get.return_value.json.return_value = {'result': 1}
+  assert convert_to_rub('USD', 1) == 1
+  mock_get.assert_called_once_with(f'https://api.apilayer.com/exchangerates_data/convert?to=RUB&from=USD&amount=1')
 
 
 if __name__ == "__main__":
-  convert_to_rub("USD", 11,999)
-  #exchange_rates(open_file('C:/Users/PB/Desktop/Python/homework_10_1/data/operations.json'))
-
-
-
-
-
-
-
-
+  #convert_to_rub("USD", 11)
+  exchange_rates(open_file('C:/Users/PB/Desktop/Python/homework_10_1/data/operations.json'))
