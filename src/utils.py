@@ -14,36 +14,7 @@ def open_file_get_transactions(file_path: str) -> list[Dict[str, Any]]:
                 return data_json
     except:
         return []
-        #print(book_info) # data - словарь, тип dict
-        # #print(type(book_info))
-
 
 
 if __name__ == "__main__":
     print(open_file_get_transactions('C:/Users/PB/Desktop/Python/homework_10_1/data/operations.json'))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

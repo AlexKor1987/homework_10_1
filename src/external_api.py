@@ -16,8 +16,6 @@ def convert_to_rub(transaction):
   operation_amount = transaction.get("operationAmount", {})
   amount = operation_amount.get("amount", 0)
   currency_code = operation_amount.get("currency", {}).get("code", 0)
-
-
   if currency_code == "RUB":
     return amount
   elif currency_code == "USD" or currency_code == "EUR":
@@ -38,11 +36,10 @@ def convert_to_rub(transaction):
       return 0.0
 
 
-
 if __name__ == "__main__":
-  #transactions = open_file_get_transactions('C:/Users/PB/Desktop/Python/homework_10_1/data/operations.json')
-  #for transaction in transactions:
-  #  convert_to_rub(transaction)
+  transactions = open_file_get_transactions('C:/Users/PB/Desktop/Python/homework_10_1/data/operations.json')
+  for transaction in transactions:
+    convert_to_rub(transaction)
 
 
 # Для проверки без использования API
@@ -61,47 +58,4 @@ if __name__ == "__main__":
     "to": "Счет 41421565395219882431"
   }
 
-
-  print(convert_to_rub(dict1))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  #print(convert_to_rub(dict1))

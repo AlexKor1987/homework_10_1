@@ -2,6 +2,7 @@ from unittest.mock import patch
 from src.utils import open_file_get_transactions
 import json
 
+
 @patch('builtins.open', create=True)
 def test_open_file_get_transactions(mock_open):
     mock_file = mock_open.return_value.__enter__.return_value
