@@ -1,0 +1,31 @@
+Function inner started in Sun Jun 22 01:26:16 2025
+Error in my_function: TypeError, args: (1, 7, 2), kwargs: {}
+Function inner finished in Sun Jun 22 01:26:16 2025
+
+Function inner started in Sun Jun 22 01:33:05 2025
+Error in my_function: NameError, args: (1, 2), kwargs: {}
+Function inner finished in Sun Jun 22 01:33:05 2025
+
+Function inner started in Sun Jun 22 21:38:50 2025
+Error in my_function: TypeError, args: (1, 2, 2), kwargs: {}
+Function inner finished in Sun Jun 22 21:38:50 2025, working time is 0.102
+
+Function inner started in Sun Jun 22 21:39:10 2025
+Function my_function is ok. Arguments: (-1, 2) Result: 1
+Function inner finished in Sun Jun 22 21:39:10 2025, working time is 0.046
+
+Function inner started in Sun Jun 22 21:40:27 2025
+Function my_function is ok. Arguments: (1, 2) Result: 3
+Function inner finished in Sun Jun 22 21:40:27 2025, working time is 0.003
+
+Function inner started in Sun Jun 22 21:46:09 2025
+Function my_function is ok. Arguments: (1, 2) Result: 3
+Function inner finished in Sun Jun 22 21:46:09 2025, working time is 0.036
+
+Function inner started in Sun Jun 22 22:14:26 2025
+Function my_function is ok. Arguments: (1, 2) Result: 3
+Function inner finished in Sun Jun 22 22:14:26 2025, working time is 0.029
+
+Function inner started in Mon Jul  7 13:02:57 2025
+Function my_function is ok. Arguments: (1, 2) Result: 3
+Function inner finished in Mon Jul  7 13:02:57 2025, working time is 0.055
