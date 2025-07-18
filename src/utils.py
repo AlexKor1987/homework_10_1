@@ -19,6 +19,7 @@ file_handler.setFormatter(file_formatter)
 
 
 
+
 def open_file_get_transactions(file_path: str) -> list[Dict[str, Any]]:
     """Функция открытия файла - принимает на вход путь до json - файла и
     возвращает список словарей с данными о финансовых транзакциях.
