@@ -69,6 +69,8 @@ pip install -r requirements.txt
 и возвращаещая сумму транзакции в рублях, эта функция также конвертирует валюты, если они не рублевые, 
 "test_convert_to_rub" - функция тестирования функции конвертации в рубли с помощью "Mock" и "patch",
 "test_open_file_get_transactions" - функция тестирования функции открытия файла.
+14. В модулях "utils" и "masks" реализовано логирование с помощью библиотеки "logging".
+.
 
 ## Примеры работы программы:
 
@@ -296,6 +298,16 @@ Function inner finished in Sun Jun 22 22:14:26 2025, working time is 0.029
 https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={currency_code}&amount={amount}
 Если "currency_code" = "USD" и "amount" = 5, то запрос на конвертацию с помощью API будет следующим:
 https://api.apilayer.com/exchangerates_data/convert?to=RUB&from=USD&amount=5
+
+# Пример логирования функции "open_file_get_transactions"
+
+2025-08-09 23:28:04,516 utils flake8 project_dz/src/masks.pyDEBUG: Попытка загрузить файл: C:/Users/PB/Desktop/Python/homework_10_1/data/operations.json
+2025-08-09 23:28:04,550 utils flake8 project_dz/src/masks.pyDEBUG: Файл: C:/Users/PB/Desktop/Python/homework_10_1/data/operations.json успешно загружен
+
+# Пример логирования функции "get_mask_card_number"
+
+2025-08-09 23:15:12,963 masks DEBUG: Попытка маскировки номера банковской карты: 7000792289606361
+2025-08-09 23:15:12,964 masks DEBUG: Маскировка номера банковской карты 7000792289606361 прошла успешно
 
 
 ## Тестирование
