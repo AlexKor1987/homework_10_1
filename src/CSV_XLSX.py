@@ -1,5 +1,6 @@
 import csv
-
+import pandas as pd
+from typing import Any, Dict
 
 
 def open_file_csv(file_path: str) -> list[Dict[str, Any]]:
@@ -9,18 +10,17 @@ def open_file_csv(file_path: str) -> list[Dict[str, Any]]:
     Если файл пустой, содержит не список или не найден, функция возвращает
     пустой список.
     """
-    import    try:
-        logger.debug(f"Попытка загрузить файл: {file_path}")
-        with open(file_path, "r", encoding="utf-8") as file:
-            data_json = json.load(file)
-            if isinstance(data_json, list):
-                logger.debug(f"Файл: {file_path} успешно загружен")
-                return data_json
+    try:
+        with open(file_path, encoding='utf-8') as file:
+            reader = csv.DictReader(file, delimiter = ';')
+            result = []
+            for row in reader:
+                result.append(row)
+        return result
+
     except FileNotFoundError:
-        logger.error(f"Файл: {file_path} не найден")
         return []
     except Exception as e:
-        logger.error(f"Ошибка: {e}")
         return []
 
 
@@ -29,20 +29,18 @@ def open_file_excel(file_path: str) -> list[Dict[str, Any]]:
     принимает путь к файлу Excel в качестве аргумента и выдает список
     словарей с транзакциями.
     Если файл пустой, содержит не список или не найден, функция возвращает
-    пустой список.
+    пустой список. Значения столбцов 'id' и 'amount' были в формате 'float'?
+    они преобразовались в формат 'int' с помощью 'astype(int)'
     """
     try:
-        logger.debug(f"Попытка загрузить файл: {file_path}")
-        with open(file_path, "r", encoding="utf-8") as file:
-            data_json = json.load(file)
-            if isinstance(data_json, list):
-                logger.debug(f"Файл: {file_path} успешно загружен")
-                return data_json
+        df = pd.read_excel(file_path)
+        df[['id', 'amount']] = df[['id', 'amount']].astype(int)
+        result = df.to_dict(orient= 'records')
+        return result
+
     except FileNotFoundError:
-        logger.error(f"Файл: {file_path} не найден")
         return []
     except Exception as e:
-        logger.error(f"Ошибка: {e}")
         return []
 
 
