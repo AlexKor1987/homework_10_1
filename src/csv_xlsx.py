@@ -1,6 +1,7 @@
 import csv
-import pandas as pd
 from typing import Any, Dict
+
+import pandas as pd
 
 
 def open_file_csv(file_path: str) -> list[Dict[str, Any]]:
@@ -8,11 +9,10 @@ def open_file_csv(file_path: str) -> list[Dict[str, Any]]:
     принимает путь к файлу CSV в качестве аргумента и выдает список
     словарей с транзакциями.
     Если файл пустой, содержит не список или не найден, функция возвращает
-    пустой список.
-    """
+    пустой список."""
     try:
-        with open(file_path, encoding='utf-8') as file:
-            reader = csv.DictReader(file, delimiter = ';')
+        with open(file_path, encoding="utf-8") as file:
+            reader = csv.DictReader(file, delimiter=";")
             result = []
             for row in reader:
                 result.append(row)
@@ -34,8 +34,8 @@ def open_file_excel(file_path: str) -> list[Dict[str, Any]]:
     """
     try:
         df = pd.read_excel(file_path)
-        df[['id', 'amount']] = df[['id', 'amount']].astype(int)
-        result = df.to_dict(orient= 'records')
+        df[["id", "amount"]] = df[["id", "amount"]].astype(int)
+        result = df.to_dict(orient="records")
         return result
 
     except FileNotFoundError:
@@ -46,9 +46,7 @@ def open_file_excel(file_path: str) -> list[Dict[str, Any]]:
 
 if __name__ == "__main__":
     print(
-        open_file_csv(
-            "C:/Users/PB/Desktop/Python/homework_10_1/data/transactions.csv"
-        )
+        open_file_csv("C:/Users/PB/Desktop/Python/homework_10_1/data/transactions.csv")
     )
 
     print(
