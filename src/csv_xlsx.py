@@ -57,4 +57,17 @@ if __name__ == "__main__":
         )
     )
 
-
+# from unittest.mock import patch, Mock
+#
+#
+# @patch('your_module.pd.read_csv')
+# def test_your_function(mock_read_csv):
+#     # Создаем объект Mock
+#     mock_data = Mock()
+#     mock_read_csv.return_value = mock_data
+#
+#     # Теперь вызываем твою функцию
+#     result = your_function('path_to_file.csv')
+#
+#     # Проверяем, что функции были вызваны корректно
+#     mock_read_csv.assert_called_once_with('path_to_file.csv')
