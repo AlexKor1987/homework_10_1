@@ -1,7 +1,8 @@
 import logging
 from typing import AnyStr
+#import os
 
-# os.makedirs('logs', exist_ok=True) #Создание папки  "logs", если её не существует
+#os.makedirs('logs', exist_ok=True) #Создание папки  "logs", если её не существует
 logger = logging.getLogger("masks")
 file_handler = logging.FileHandler(
     "C:/Users/PB/Desktop/Python/homework_10_1/logs/masks.log",

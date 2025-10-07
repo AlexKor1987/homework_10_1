@@ -11,7 +11,7 @@ file_handler = logging.FileHandler(
     encoding="utf-8",
 )
 file_formatter = logging.Formatter(
-    "%(asctime)s %(name)s flake8 project_dz/src/masks.py%(levelname)s: %(message)s"
+    "%(asctime)s %(name)s %(levelname)s: %(message)s"
 )
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
