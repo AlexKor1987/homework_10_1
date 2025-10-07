@@ -1,6 +1,8 @@
 from unittest.mock import mock_open, patch
 import pytest
 from src.csv_xlsx import open_file_csv, open_file_excel
+import csv
+import pandas as pd
 
 
 @patch('builtins.open', new_callable=mock_open, read_data='id;state;date;amount;currency_name;currency_code;from;to;description\n650703;EXECUTED;2023-09-05T11:30:32Z;16210;Sol;PEN;Счет 58803664561298323391;Счет 39745660563456619397;Перевод организации')
@@ -30,28 +32,51 @@ def test_open_file_csv_not_file(mock_open):
     assert result == expected_result
 
 
-@patch('builtins.open', new_callable=mock_open, read_data='id;state;date;amount;currency_name;currency_code;from;to;description\n650703;EXECUTED;2023-09-05T11:30:32Z;16210;Sol;PEN;Счет 58803664561298323391;Счет 39745660563456619397;Перевод организации')
-def test_open_file_excel(mock_open):
+@patch('pandas.read_excel')
+def test_open_file_excel(mock_read_excel):
+    # Создаём DataFrame, который будет возвращать mock
+    mock_data = {
+        'id': [650703],
+        'state': ['EXECUTED'],
+        'date': ['2023-09-05T11:30:32Z'],
+        'amount': [16210],
+        'currency_name': ['Sol'],
+        'currency_code': ['PEN'],
+        'from': ['Счет 58803664561298323391'],
+        'to': ['Счет 39745660563456619397'],
+        'description': ['Перевод организации']
+    }
+    mock_df = pd.DataFrame.from_dict(mock_data)
+    mock_read_excel.return_value = mock_df
     expected_result = [
         {
-            'id': '650703', 'state': 'EXECUTED', 'date': '2023-09-05T11:30:32Z', 'amount': '16210',
+            'id': 650703, 'state': 'EXECUTED', 'date': '2023-09-05T11:30:32Z', 'amount': 16210,
             'currency_name': 'Sol', 'currency_code': 'PEN', 'from': 'Счет 58803664561298323391',
             'to': 'Счет 39745660563456619397', 'description': 'Перевод организации'
         }
     ]
-    result = open_file_csv('fake/path/to/file.csv')
+    result = open_file_excel('fake/path/to/file.xlsx')
     assert result == expected_result
 
 
-@patch('builtins.open', new_callable=mock_open, read_data=None)
-def test_open_file_excel_file_empty(mock_open):
+@patch('pandas.read_excel')
+def test_open_file_excel_file_empty(mock_read_excel):
+    # Создаём DataFrame, который будет возвращать mock
+    mock_data = {
+    }
+    mock_df = pd.DataFrame.from_dict(mock_data)
+    mock_read_excel.return_value = mock_df
     expected_result = []
-    result = open_file_csv('fake/path/to/file.csv')
+    result = open_file_excel('fake/path/to/file.xlsx')
     assert result == expected_result
 
 
-@patch('builtins.open', new_callable=mock_open, read_data="Nothing")
-def test_open_file_excel_not_file(mock_open):
+@patch('pandas.read_excel')
+def test_open_file_excel_not_file(mock_read_excel):
+    # Создаём DataFrame, который будет возвращать mock
+    mock_data = None
+    mock_df = pd.DataFrame.from_dict(mock_data)
+    mock_read_excel.return_value = mock_df
     expected_result = []
-    result = open_file_csv('fake/path/to/file.csv')
+    result = open_file_excel('fake/path/to/file.xlsx')
     assert result == expected_result
